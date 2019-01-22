@@ -30,6 +30,7 @@ class LanguageController extends Controller
    		$language->save();
 
    		Session::flash('message', 'Step 5 - Languages Data Successfull Added'); 
+
    		return redirect('register/step6');
 
    	}
@@ -83,7 +84,10 @@ class LanguageController extends Controller
          $language->level= $request->level;
          $language->user_id= $userid;
          $language->save();
-
+         if($request->ajax()){
+                $msg = ['msg'=> 'New language added', 'flag'=>1];
+                return response()->json($msg);
+            }
          Session::flash('message', 'Languages Data Successfull Added<script>swal("Added","Language Added","success");</script>'); 
          return redirect('language');
       }
