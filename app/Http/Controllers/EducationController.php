@@ -21,12 +21,12 @@ class EducationController extends Controller
          $user_email = Auth::user()->email;
          $education = new Education;
          $validated = $request->validate([   
-            "title" => 'required|max:50',
+            "title" => 'required|max:50|alpha',
             "description" => 'required|max:200',
             "passing_year" => 'required|numeric',
-            "marks" => 'required',
-            "institute" => 'max:100',
-            "from_date" => 'required',
+            "marks" => 'required|between:0,99.99',
+            "institute" => 'max:100|alpha',
+            "from_date" => 'required"',
             "to_date" => 'required',
          ]);
          $education->name= $request->title;

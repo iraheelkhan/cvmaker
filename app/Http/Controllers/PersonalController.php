@@ -40,8 +40,8 @@ class PersonalController extends Controller
             "age" => 'max:3',
             "postalcode" => 'max:50',
             "country" => 'max:50',
-            "phone" => 'max:15',
-            "dob" => 'required',
+            "phone" => 'digits:12|numeric',
+            "dob" => 'required|before:2005',
             "website" => 'required',
             "objective" => 'required|max:300',
         ]);
@@ -86,16 +86,16 @@ class PersonalController extends Controller
    		$user_email = Auth::user()->email;
    		$personal = Personal::findorFail($id);
    		$validated = $request->validate([
-   		   	"firstname" => 'required|max:25|alpha',
+   		  "firstname" => 'required|max:25|alpha',
    			"lastname" => 'required|max:25|alpha',
    			"address" => 'required|max:100',
    			"address2" => 'max:100',
-   			"city" => 'max:50',
+   			"city" => 'max:50|',
    			"age" => 'max:3',
    			"postalcode" => 'max:50',
    			"country" => 'max:50',
-   			"phone" => 'max:15',
-   			"dob" => 'required',
+   			"phone" => 'digits:12|numeric',
+   			"dob" => 'required|before:2005',
    			"website" => 'required',
    			"objective" => 'required|max:300',
    		]);
@@ -119,7 +119,7 @@ class PersonalController extends Controller
         $user->name = $fullname;
         $user->save();
 
-   		Session::flash('message', 'Personal Data Successfull Updated'); 
+   		Session::flash('message', 'Personal Data Successfull Updated<script> swal("Updated","Personal Data Successfull Updated","success");</script>'); 
    		return redirect('personal');
 
    	}
