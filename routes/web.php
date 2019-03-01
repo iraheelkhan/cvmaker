@@ -143,3 +143,4 @@ Route::get('/pdf','PdfController@export_pdf')->name('GeneratePDF');
 Admin Routes Goes Here
 =================================================*/	
 Route::get('admin/user/list','AdminController@list')->name('UserList');
+Route::post('admin/user/delete','AdminController@delete')->name('UserDelete');
