@@ -24,12 +24,12 @@ class ProjectController extends Controller
    		$user_email = Auth::user()->email;
    		$project = new Project;
    		$validated = $request->validate([	
-   			"project_title" => 'required|max:100',
+   			"project_title" => 'required|max:100|regex:/^[\pL\s\-]+$/u',
    			"description" => 'required|max:200',
    			"duration" => 'min:1',
    			"details" => 'max:300',
    			"duration_prefix" => 'required|max:8',
-			"company" => 'required|max:50',
+			  "company" => 'required|max:50|regex:/^[\pL\s\-]+$/u',
    		]);
    		$project->company= $request->company;
    		$project->description= $request->description;

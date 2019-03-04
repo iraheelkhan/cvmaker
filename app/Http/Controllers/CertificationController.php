@@ -24,8 +24,8 @@ class CertificationController extends Controller
 		$user_email = Auth::user()->email;
 		$certification = new Certification;
 		$validated = $request->validate([	
-			"title" => 'required|max:100',
-			"institute" => 'required|max:200',
+			"title" => 'required|regex:/^[\pL\s\-]+$/u|max:100',
+			"institute" => 'required|regex:/^[\pL\s\-]+$/u|max:200',
 			"year" => 'required',
 			"duration" => 'min:1',
 			"duration_prefix" => 'required|max:8',

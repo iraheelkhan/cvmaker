@@ -21,7 +21,7 @@ class LanguageController extends Controller
    		$userid = Auth::user()->id;
    		$language = new Language;
    		$validated = $request->validate([	
-   			"name" => 'required|max:50',
+   			"name" => 'required|max:50|regex:/^[\pL\s\-]+$/u',
    			"level" => 'required|max:20',
    		]);
    		$language->name= $request->name;

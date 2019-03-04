@@ -32,7 +32,7 @@ class PdfController extends Controller
                $skill->level = "Undertanding";
             }
             else{
-               $skill->level = "Farigh";
+               $skill->level = "Normal";
             }
          }
 		$personal = Personal::where('user_id', $id)->get();

@@ -8,13 +8,18 @@ use Auth;
 use Session;
 class AdminController extends Controller
 {
+    public function __construct(){
+       $this->middleware('auth');
+    }
     public function list()
-    {
+    {   
+        $this->authorize('only_admin');
     	$user = User::all();
     	return view('admin.userlistview')->with('data', $user);
     }
 
     public function delete(Request $request){
+        $this->authorize('only_admin');
     	$id = $request->id;
     	$user_id = Auth::user()->id;
     	if($id == $user_id){

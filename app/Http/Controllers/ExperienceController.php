@@ -24,9 +24,9 @@ class ExperienceController extends Controller
    		$user_email = Auth::user()->email;
    		$experience = new Experience;
    		$validated = $request->validate([	
-   			"company_name" => 'required|max:50',
+   			"company_name" => 'required|max:50|regex:/^[\pL\s\-]+$/u',
    			"description" => 'required|max:200',
-   			"designation" => 'required|min:3',
+   			"designation" => 'required|min:3|regex:/^[\pL\s\-]+$/u',
    			"from_date" => 'required',
    			"to_date" => 'required',
    		]);

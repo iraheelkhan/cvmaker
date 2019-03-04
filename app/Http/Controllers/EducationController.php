@@ -21,11 +21,11 @@ class EducationController extends Controller
          $user_email = Auth::user()->email;
          $education = new Education;
          $validated = $request->validate([   
-            "title" => 'required|max:50|alpha',
+            "title" => 'required|regex:/^[\pL\s\-]+$/u|max:50',
             "description" => 'required|max:200',
             "passing_year" => 'required|numeric',
             "marks" => 'required|between:0,99.99',
-            "institute" => 'max:100|alpha',
+            "institute" => 'max:100|regex:/^[\pL\s\-]+$/u',
             "from_date" => 'required"',
             "to_date" => 'required',
          ]);
@@ -60,11 +60,11 @@ class EducationController extends Controller
          $user_email = Auth::user()->email;
          $education = new Education;
          $validated = $request->validate([   
-            "title" => 'required|max:50',
+            "title" => 'required|max:50|regex:/^[\pL\s\-]+$/u',
             "description" => 'required|max:200',
             "passing_year" => 'required|min:1950|max:2100|numeric',
             "marks" => 'required|min:10|max:100|numeric',
-            "institute" => 'max:100',
+            "institute" => 'max:100|regex:/^[\pL\s\-]+$/u',
             "from_date" => 'required',
             "to_date" => 'required',
          ]);
