@@ -12,17 +12,16 @@
                     @endif
                     <strong>Users</strong>
                     <small> Details</small>
-                    <a href="" class="btn btn-info">Add Education </a>
-                    <button  type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger">delete</button >
                 </div>
 
-                <div class="card-body card-block">
-                    <table id="usertableview" class="display">
+                <div class="table-responsive">
+                    <table id="usertableview" class="table table-borderless table-data3">
                         <thead>
                             <th>No</th>
                             <th>Name</th>
                             <th>role</th>
                             <th>email</th>
+                            <th>Action</th>
                         </thead>
                         <tbody>
                             <?php $index = 1; ?>
@@ -32,6 +31,13 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->role}}</td>
                                 <td>{{$user->email}}</td>
+                                <td>
+                                    <form method="post" action="{{route('UserDelete')}}">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="id" value="{{$user->id}}">
+                                            <button type="submit" class="btn btn-danger" v>Delete </button>
+                                        </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -45,9 +51,7 @@
 {{-- model goes here --}}
 <!-- Modal -->
 <script type="text/javascript">
-    $(document).ready(function() {
-    $('#usertableview').DataTable();
-} );
+    
 </script>
 @endsection
 @section('modal')
@@ -55,14 +59,28 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Delete Educations</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete user</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        @foreach($data as $user)
+            <table id="modalDeleteTable">
+                <tr>
+                    <td width="200px">{{$user->name}}</td>
+                    <td width="100px">
+                        <form method="post" action="{{route('UserDelete')}}">
+                            {{csrf_field()}}
+                            <input type="hidden" name="id" value="{{$user->id}}">
+                            <button type="submit" class="btn btn-danger" v>Delete </button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            </table>
+        @endforeach
         
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
