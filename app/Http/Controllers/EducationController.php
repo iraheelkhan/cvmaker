@@ -26,7 +26,7 @@ class EducationController extends Controller
             "passing_year" => 'required|numeric',
             "marks" => 'required|between:0,99.99',
             "institute" => 'max:100|regex:/^[\pL\s\-]+$/u',
-            "from_date" => 'required"',
+            "from_date" => 'required',
             "to_date" => 'required',
          ]);
          $education->name= $request->title;
